@@ -14,7 +14,7 @@ schools.head()
 math_schools = schools[schools['average_math'] >= 800*0.8]
 math_schools_srt = math_schools.sort_values('average_math', ascending = False)
 best_math_schools = math_schools_srt[['school_name','average_math']]
-#print(best_math_schools)
+
 
 #top 10 performing schools
 schools['total_SAT'] = schools[['average_math','average_reading','average_writing']].sum(axis=1)
@@ -28,7 +28,7 @@ borough_agg = schools.groupby('borough').agg(
     average_SAT = ('total_SAT','mean'),
     std_SAT = ('total_SAT','std')
 )
-##print(borough_agg)
+
 top_borough = borough_agg['std_SAT'].idxmax()
 largest_std_dev = borough_agg.loc[[top_borough]].round(2)
 print(largest_std_dev)
